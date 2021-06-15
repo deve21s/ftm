@@ -1,9 +1,9 @@
 
 const Loader = () => {
-    let circleCommonClasses = 'flex justify-center h-2.5 w-2.5 bg-gray-500 rounded-full';
+    let circleCommonClasses = 'h-2.5 w-2.5 bg-gray-500 rounded-full';
 
     return (
-   <div className='flex'>
+   <div className='flex justify-center items-center bg-transparent w-full h-screen'>
         <div className={`${circleCommonClasses} mr-1`}></div>
         <div className={`${circleCommonClasses} mr-1`}></div>
         <div className={`${circleCommonClasses}`}></div>

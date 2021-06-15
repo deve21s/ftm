@@ -18,20 +18,22 @@ function Family(props) {
     setmembers([newmember, ...members]);
   };
   return (
-    <div className="flex flex-col md:flex-row bg-gray-100 h-screen w-full">
-      {/* {error && <div>{error}</div>}
-      {ispending && <Loader />} */}
-      <div className="md:w-1/2 bg-gray-300 flex justify-center items-centers">
-        <Createmember addmember={addmember} />
-      </div>
-      <div className="flex flex-col  md:w-1/2 bg-gray-800 items-center rounded-t-xl md:rounded-t-none md:rounded-l-xl p-8 overflow-y-auto shadow-2xl">
-        <h1 className="sm:text-3x1 md:tracking-wider rounded-sm bg-yellow-600 p-3 mb-5 font-mono">
-          MemberList
-        </h1>
-        {members &&
-          members.map((member) => (
-            <Memberlist member={member} key={member._id} />
-          ))}
+    <div>
+      {error && <div>{error}</div>}
+      {ispending && <Loader />}
+      <div className="flex flex-col md:flex-row bg-gray-100 h-screen w-full">
+        <div className="md:w-1/2 bg-gray-300 flex justify-center items-centers">
+          <Createmember addmember={addmember} />
+        </div>
+        <div className="flex flex-col  md:w-1/2 bg-gray-800 items-center rounded-t-xl md:rounded-t-none md:rounded-l-xl p-8 overflow-y-auto shadow-2xl">
+          <h1 className="sm:text-3x1 md:tracking-wider rounded-sm bg-yellow-600 p-3 mb-5 font-mono">
+            MemberList
+          </h1>
+          {members &&
+            members.map((member) => (
+              <Memberlist member={member} key={member._id} />
+            ))}
+        </div>
       </div>
     </div>
   );
