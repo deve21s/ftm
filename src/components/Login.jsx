@@ -1,5 +1,6 @@
 import "../App.css";
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
+import { useHistory } from 'react-router-dom'
 import React from 'react'
 import NavbarButton from "./NavbarButton";
 
@@ -7,11 +8,28 @@ import NavbarButton from "./NavbarButton";
 function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassward] = useState('')
-    //const [classes,setclasses] = useState('active good')
-    function onSubmit(e){
+    let history = useHistory()
+    useEffect(()=> {
+        
+        if(localStorage.getItem('token')){
+            history.push('/family')
+        }
+    })
+   async function onSubmit(e){
+        let item = {email, password}
         e.preventDefault()
         const loginvalue = {email,password}
         console.log(loginvalue)
+        let result = await fetch('http://localhost:5000/login',{
+            method : 'POST',
+            headers : {
+            "Content-Type" : "application/json"
+            },
+            body : JSON.stringify(item)
+        })
+         result = await result.json()
+        localStorage.setItem('token', JSON.stringify(result))
+        history.push('/family')
     }
    
 return( 

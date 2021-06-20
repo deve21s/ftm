@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import Header from './Header';
 
 function Edittask(props) {
   const [title, setTitle] = useState("");
@@ -16,9 +17,10 @@ function Edittask(props) {
   };
     return (
         <>
-        <form className="flex flex-col justify-center items-center w-full bg-gray-400 rounded-xl" onSubmit={EditTask} >
+        <Header/>
+        <form className="flex flex-col justify-center items-center w-full h-screen bg-gray-400 rounded-xl" onSubmit={EditTask} >
         <h1 className="sm:text-3xl md:mt-5 sm:m-0 tracking-wider rounded-b-xl bg-yellow-600 p-3 mb-8 font-mono">
-          Add-Task
+          Edit-Task
         </h1>
           <div className="m-2 w-2/3"> 
           <span className="font-semibold">Title</span> 

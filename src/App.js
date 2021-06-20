@@ -9,6 +9,7 @@ import Createtask from "./components/Createtask";
 import Setpassword from "./components/Setpassword";
 import Edittask from "./components/Edittask";
 import Task from "./components/Task";
+import Taskdetails from "./components/Taskdetails";
 function App() {
   return (
     <Router>
@@ -21,6 +22,7 @@ function App() {
           <Route path="/tasks" component={Task} />
           <Route path="/edittask/:taskid" component={Edittask} />
           <Route path="/setpassword/:token" component={Setpassword} />
+          <Route path="/taskdetails/:id" component={Taskdetails} />
         </Switch>
       </div>
     </Router>
