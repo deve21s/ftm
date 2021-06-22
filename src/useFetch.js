@@ -6,9 +6,9 @@ const useFetch = (url) => {
   useEffect(() => {
     fetch(url)
       .then((res) => {
-        // if (!res.ok) {
-        //   throw Error("something went wrong here.");
-        // }
+        if (!res.ok) {
+          throw Error("something went wrong here.");
+        }
         console.log(res);
         return res.json();
       })
