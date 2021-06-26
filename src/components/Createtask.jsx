@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 
 function Createtask({addtask}) {
   const [title, setTitle] = useState("");
-  const [description, setEmail] = useState("");
+  const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [assign, setAssign] = useState("");
   const Createtask = async (e) => {
@@ -43,7 +43,7 @@ function Createtask({addtask}) {
         <span className="font-semibold">Description</span>
           <input
             type="text"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setDescription(e.target.value)}
             placeholder="Enter your description"
             className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:ring w-full pr-10"
           />

@@ -2,15 +2,27 @@ import "../App.css";
 import { useState } from "react";
 import React from "react";
 import NavbarButton from "./NavbarButton";
+import { useHistory } from "react-router-dom";
 
 function Ragister() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassward] = useState("");
-  function onSubmit(e) {
+  const history = useHistory();
+  async function onSubmit(e) {
     e.preventDefault();
-    const loginvalue = { username, email, password };
-    console.log(loginvalue);
+    const ragisterdetails = { username, email, password };
+    let result = await fetch(`http://localhost:5000/ragister`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(ragisterdetails),
+    });
+    let data = await result.json();
+    console.log(data);
+    localStorage.setItem("token", data);
+    history.push("/");
   }
   return (
     <div className="w-full h-screen flex">

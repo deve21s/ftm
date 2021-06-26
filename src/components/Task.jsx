@@ -11,22 +11,24 @@ function Task() {
   const {error, ispending, data} = useFetch("http://localhost:5000/tasks/60bcc6e83a0d25360c333171");
 
   useEffect(()=> {
-    setTasks(data)
-  },[])
- 
+    if(data){
+      setTasks(data)
+    }
+  },[data])
 
+  const addtask = (e) => { 
+    console.log(e)
+      setTasks([e, ...tasks ])
+  }
   const taskdetail = (e) => {
     console.log(e._id)
     history.push(`/taskdetails/${e._id}`)
   }
-  const addtask = (e) => { 
-    console.log(e)
-      setTasks(...data, e)
+  const edittask = (e) => {
+    console.log(e._id)
+    history.push(`/edittask/${e._id}`)
   }
-  const deletetask = (e) => {
-    data.Tasks.filter(task => task._id !== e._id)
-  }
-    
+ 
     return (
         <div>
           <Header />
@@ -40,9 +42,9 @@ function Task() {
             <h1 className="sm:text-3x1 md:tracking-wider rounded-sm bg-yellow-600 p-3 mb-5 font-mono mt-5">
               Tasklist
             </h1>
-            {data &&
-            data.map((task) => (
-              <Tasklist task={task}  key={task._id} taskdetail={taskdetail} onClick={deletetask} />
+            {tasks &&
+            tasks.map((task) => (
+              <Tasklist task={task}  key={task._id} taskdetail={taskdetail} edittask={edittask} />
             ))}
           </div>
         </div>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 function Createmember(props) {
   const [message, setMessage] = useState("");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState();
 
   const createmember = (e) => {
     e.preventDefault();
@@ -31,7 +31,13 @@ function Createmember(props) {
               className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:ring w-full pr-10"
             />
           </div>
-          <h1 className="px-5 py-3 rounded-md bg-gray-600">+</h1>
+          <div className="relative flex flex-wrap items-stretch mb-3 mr-5">
+            <input
+              type="button"
+              value="+"
+              className=" bg-blue-500 rounded border border-Gray-300 text-xl outline-none focus:outline-none focus:ring w-full px-4 cursor-pointer"
+            />
+          </div>
         </div>
         <div>
           <input
