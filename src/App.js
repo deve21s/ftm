@@ -10,6 +10,7 @@ import Setpassword from "./components/Setpassword";
 import Edittask from "./components/Edittask";
 import Task from "./components/Task";
 import Taskdetails from "./components/Taskdetails";
+import PrivateRoute from "./components/protected";
 function App() {
   return (
     <Router>
@@ -17,12 +18,12 @@ function App() {
         <Switch>
           <Route exact path="/" component={Login} />
           <Route path="/ragister" component={Ragister} />
-          <Route path="/family" component={Family} />
-          <Route path="/createtask" component={Createtask} />
-          <Route path="/tasks" component={Task} />
-          <Route path="/edittask/:taskid" component={Edittask} />
+          <PrivateRoute component={Family} path="/family" />
+          {/* <Route path="/family" component={Family} /> */}
+          <PrivateRoute path="/tasks" component={Task} />
+          <PrivateRoute path="/edittask/:taskid" component={Edittask} />
           <Route path="/setpassword/:token" component={Setpassword} />
-          <Route path="/taskdetails/:id" component={Taskdetails} />
+          <PrivateRoute path="/taskdetails/:id" component={Taskdetails} />
         </Switch>
       </div>
     </Router>
