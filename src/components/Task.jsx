@@ -8,7 +8,9 @@ import { useHistory } from "react-router-dom";
 function Task() {
   const [tasks, setTasks] = useState([]);
   const history = useHistory();
-  const { error, ispending, data } = useFetch("http://localhost:5000/tasks");
+  const { error, ispending, data } = useFetch(
+    "https://ftmbackend.herokuapp.com/tasks"
+  );
 
   useEffect(() => {
     if (data) {

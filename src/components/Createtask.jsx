@@ -13,7 +13,7 @@ function Createtask({ addtask }) {
       date,
       assign,
     };
-    let result = await fetch("http://localhost:5000/addtask", {
+    let result = await fetch("https://ftmbackend.herokuapp.com/addtask", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

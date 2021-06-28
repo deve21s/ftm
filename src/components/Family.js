@@ -8,7 +8,7 @@ import Createmember from "./Createmember";
 function Family(props) {
   const [members, setmembers] = useState([]);
   const { data, ispending, error } = useFetch(
-    "http://localhost:5000/memberlist"
+    "https://ftmbackend.herokuapp.com/memberlist"
   );
   useEffect(() => {
     setmembers(data);

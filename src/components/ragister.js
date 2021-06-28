@@ -12,7 +12,7 @@ function Ragister() {
   async function onSubmit(e) {
     e.preventDefault();
     const ragisterdetails = { username, email, password };
-    let result = await fetch(`http://localhost:5000/ragister`, {
+    let result = await fetch(`https://ftmbackend.herokuapp.com/ragister`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

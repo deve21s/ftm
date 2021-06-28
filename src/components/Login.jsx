@@ -18,7 +18,7 @@ function Login() {
     e.preventDefault();
     const loginvalue = { email, password };
     console.log(loginvalue);
-    let result = await fetch("http://localhost:5000/login", {
+    let result = await fetch("https://ftmbackend.herokuapp.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
