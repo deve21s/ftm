@@ -5,7 +5,6 @@ import Ragister from "./components/ragister";
 // import Dashboard from "./components/Deshboard";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Family from "./components/Family";
-import Createtask from "./components/Createtask";
 import Setpassword from "./components/Setpassword";
 import Edittask from "./components/Edittask";
 import Task from "./components/Task";

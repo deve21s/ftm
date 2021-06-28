@@ -4,7 +4,8 @@ const useFetch = (url) => {
   const [ispending, setIspending] = useState(true);
   const [error, setError] = useState(null);
   useEffect(() => {
-    fetch(url)
+    const token = localStorage.getItem("token");
+    fetch(`${url}?token=${token}`)
       .then((res) => {
         if (!res.ok) {
           throw Error("something went wrong here.");

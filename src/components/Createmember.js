@@ -1,20 +1,18 @@
 import React, { useState } from "react";
 
 function Createmember(props) {
-  const [message, setMessage] = useState("");
   const [email, setEmail] = useState();
 
   const createmember = (e) => {
     e.preventDefault();
     fetch();
-    // const family = {
-    //   email,
-    // };
-    // return props.addmember(family);
+    const family = {
+      email,
+    };
+    return props.addmember(family);
   };
   return (
     <>
-      {message && <h1>{message}</h1>}
       <form
         className="flex flex-col justify-center items-center w-full space-x-1 space-y-2"
         onSubmit={createmember}

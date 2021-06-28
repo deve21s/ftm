@@ -8,7 +8,7 @@ import Createmember from "./Createmember";
 function Family(props) {
   const [members, setmembers] = useState([]);
   const { data, ispending, error } = useFetch(
-    "http://localhost:5000/memberlist/60bcc6e83a0d25360c333171"
+    "http://localhost:5000/memberlist"
   );
   useEffect(() => {
     setmembers(data);
@@ -23,7 +23,7 @@ function Family(props) {
       <Header />
       {error && <div>{error}</div>}
       {ispending && <Loader />}
-      <div className="flex flex-col md:flex-row bg-gray-100 h-screen w-full">
+      <div className="flex flex-col md:flex-row bg-gray-100 md:min-h-screen w-full">
         <div className="md:w-1/2 bg-gray-300 flex justify-center items-centers">
           <Createmember addmember={addmember} />
         </div>

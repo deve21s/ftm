@@ -1,5 +1,5 @@
 import "../App.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Redirect, useHistory, useLocation } from "react-router-dom";
 import React from "react";
 import NavbarButton from "./NavbarButton";
@@ -8,12 +8,11 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassward] = useState("");
   let history = useHistory();
-  let state = useLocation();
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      return <Redirect to={state?.from || "/family"} />;
-    }
-  });
+  const { state } = useLocation();
+  if (localStorage.getItem("token")) {
+    return <Redirect to={state?.from.pathname || "/family"} />;
+  }
+
   async function onSubmit(e) {
     let item = { email, password };
     e.preventDefault();
@@ -27,7 +26,8 @@ function Login() {
       body: JSON.stringify(item),
     });
     result = await result.json();
-    localStorage.setItem("token", JSON.stringify(result));
+    console.log(result);
+    localStorage.setItem("token", result);
     history.push("/family");
   }
 
@@ -62,7 +62,7 @@ function Login() {
           />
           <button
             onClick={onSubmit}
-            className="bg-blue-400 hover:bg-blue-700 hover:text-white text-left text-black px-3 py-1 rounded text-lg focus:outline-none shadow"
+            className="bg-blue-700 hover:text-white text-left text-black px-3 py-1 rounded text-lg focus:outline-none shadow"
           >
             Sign In
           </button>
