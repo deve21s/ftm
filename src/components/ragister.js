@@ -29,11 +29,11 @@ function Ragister() {
       <img
         src="https://images.unsplash.com/photo-1475503572774-15a45e5d60b9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
         alt="background"
-        className="object-cover object-center h-screen w-6/12"
+        className="object-cover object-center h-screen hidden md:block md:w-6/12"
       />
-      <div className="bg-white flex flex-col justify-center items-center w-6/12 shadow-lg">
+      <div className="bg-white flex flex-col justify-center items-center w-full md:w-6/12 shadow-lg">
         <NavbarButton />
-        <div className="w-1/2">
+        <div className="w-4/5 md:w-1/2">
           <input
             type="text"
             name="username"

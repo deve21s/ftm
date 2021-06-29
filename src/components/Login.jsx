@@ -37,11 +37,11 @@ function Login() {
         src="http://images.unsplash.com/photo-1475503572774-15a45e5d60b9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
         loading="lazy"
         alt="background"
-        className="object-cover object-center h-screen w-6/12"
+        className="object-cover object-center h-screen w-6/12 hidden md:block"
       />
-      <div className="bg-white flex flex-col justify-center items-center w-6/12 shadow-lg">
+      <div className="bg-white flex flex-col justify-center items-center w-full md:w-6/12 shadow-lg">
         <NavbarButton />
-        <form className="w-1/2">
+        <form className="w-4/5 md:w-1/2">
           <input
             type="email"
             name="email"
