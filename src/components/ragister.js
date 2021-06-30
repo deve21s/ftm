@@ -66,8 +66,6 @@ function Ragister() {
           </button>
         </div>
       </div>
-      {/* <div className={classes}>{classes}</div>
-    <button onClick={toggle}>click</button> */}
     </div>
   );
 }
