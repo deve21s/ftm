@@ -26,9 +26,12 @@ function Task() {
     console.log(e._id);
     history.push(`/taskdetails/${e._id}`);
   };
-  const edittask = (e) => {
-    console.log(e._id);
-    history.push(`/edittask/${e._id}`);
+  const edittask = (id) => {
+    console.log(id);
+    history.push(`/edittask/${id}`);
+  };
+  const deletetask = (e) => {
+    setTasks(tasks.filter((task) => task._id !== e));
   };
 
   return (
@@ -51,6 +54,7 @@ function Task() {
                 key={task._id}
                 taskdetail={taskdetail}
                 edittask={edittask}
+                deletetask={deletetask}
               />
             ))}
         </div>
