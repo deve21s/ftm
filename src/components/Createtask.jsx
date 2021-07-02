@@ -5,6 +5,10 @@ function Createtask({ addtask }) {
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [assign, setAssign] = useState("");
+  const token = localStorage.getItem("token");
+  const mindate = Date.now();
+
+  console.log(mindate);
   const Createtask = async (e) => {
     e.preventDefault();
     const task = {
@@ -13,13 +17,16 @@ function Createtask({ addtask }) {
       date,
       assign,
     };
-    let result = await fetch("https://ftmbackend.herokuapp.com/addtask", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(task),
-    });
+    let result = await fetch(
+      `https://ftmbackend.herokuapp.com/addtask?token=${token}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(task),
+      }
+    );
     let data = await result.json();
     addtask(data);
   };
@@ -55,6 +62,7 @@ function Createtask({ addtask }) {
           <span className="font-semibold">DueDate</span>
           <input
             type="date"
+            min={Date.now().toString()}
             onChange={(e) => setDate(e.target.value)}
             className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:ring w-full pr-10"
           />
