@@ -35,8 +35,8 @@ function Task() {
   return (
     <div>
       <Header />
-      {error && <div>{error}</div>}
       {ispending && <Loader />}
+      {error && <div>{error}</div>}
       <div className="flex flex-col md:flex-row bg-gray-100 h-screen w-full">
         <div className="md:w-1/2 bg-gray-300 flex justify-center items-centers">
           <Createtask addtask={addtask} />
@@ -45,7 +45,7 @@ function Task() {
           <h1 className="sm:text-3x1 md:tracking-wider rounded-sm bg-yellow-600 p-3 mb-5 font-mono mt-5">
             Tasklist
           </h1>
-          {tasks &&
+          {tasks && (tasks.length > 0 || tasks == null) ? (
             tasks.map((task) => (
               <Tasklist
                 task={task}
@@ -54,7 +54,12 @@ function Task() {
                 edittask={edittask}
                 deletetask={deletetask}
               />
-            ))}
+            ))
+          ) : (
+            <h1 className="flex flex-col items-center justify-center text-xl text-red-400">
+              No Task to show...
+            </h1>
+          )}
         </div>
       </div>
     </div>

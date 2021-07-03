@@ -31,10 +31,16 @@ function Family(props) {
           <h1 className="sm:text-3x1 md:tracking-wider rounded-sm bg-yellow-600 p-3 mb-5 mt-5 font-mono">
             MemberList
           </h1>
-          {members &&
+          {members && members.length > 0 ? (
             members.map((member) => (
               <Memberlist member={member} key={member._id} />
-            ))}
+            ))
+          ) : (
+            <div className="flex justify-center items-center text-xl text -white bg-red-300">
+              <span>NO member avilable for this family</span>
+            </div>
+          )}
+          )
         </div>
       </div>
     </div>

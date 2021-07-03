@@ -1,11 +1,26 @@
-import Family from "./Family";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
-import memberlist from "./Memberlist";
-import Createmember from "./Createmember";
+import { useState } from "react";
 
 function Deshboard() {
-  return <div className="flex bg-gray-100 h-screen w-full"></div>;
+  const [countdown, setCountdown] = useState(10);
+
+  let interval;
+
+  startTimer();
+
+  function startTimer() {
+    interval = setInterval(() => {
+      if (countdown > 0) setCountdown(countdown - 1);
+      else {
+        clearInterval(interval);
+      }
+    }, 1000);
+  }
+
+  return (
+    <div>
+      <h1>Countdown: {countdown}</h1>
+    </div>
+  );
 }
 
 export default Deshboard;

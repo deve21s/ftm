@@ -9,6 +9,7 @@ function Createtask({ addtask }) {
   const mindate = Date.now();
 
   console.log(mindate);
+
   const Createtask = async (e) => {
     e.preventDefault();
     const task = {
@@ -21,6 +22,7 @@ function Createtask({ addtask }) {
       `https://ftmbackend.herokuapp.com/addtask?token=${token}`,
       {
         method: "POST",
+        nocors: true,
         headers: {
           "Content-Type": "application/json",
         },
@@ -28,6 +30,7 @@ function Createtask({ addtask }) {
       }
     );
     let data = await result.json();
+    console.log(data);
     addtask(data);
   };
   return (

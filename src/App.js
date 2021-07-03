@@ -10,6 +10,7 @@ import Edittask from "./components/Edittask";
 import Task from "./components/Task";
 import Taskdetails from "./components/Taskdetails";
 import PrivateRoute from "./components/protected";
+import Deshboard from "./components/Deshboard";
 function App() {
   return (
     <Router>
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/" component={Login} />
           <Route path="/ragister" component={Ragister} />
           <PrivateRoute component={Family} path="/family" />
+          <Route path="deshboard" component={Deshboard} />
           {/* <Route path="/family" component={Family} /> */}
           <PrivateRoute path="/tasks" component={Task} />
           <PrivateRoute path="/edittask/:taskid" component={Edittask} />
