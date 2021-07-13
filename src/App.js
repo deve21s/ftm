@@ -20,7 +20,6 @@ function App() {
           <Route path="/ragister" component={Ragister} />
           <PrivateRoute component={Family} path="/family" />
           <Route path="deshboard" component={Deshboard} />
-          {/* <Route path="/family" component={Family} /> */}
           <PrivateRoute path="/tasks" component={Task} />
           <PrivateRoute path="/edittask/:taskid" component={Edittask} />
           <Route path="/setpassword/:token" component={Setpassword} />

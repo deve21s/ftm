@@ -5,8 +5,10 @@ import Loader from "./Loader";
 import Header from "./Header";
 import Createtask from "./Createtask";
 import { useHistory } from "react-router-dom";
+const jwt = require("jsonwebtoken");
 function Task() {
   const [tasks, setTasks] = useState([]);
+  const [message, setMessage] = useState("");
   const history = useHistory();
   const { error, ispending, data } = useFetch(
     "https://ftmbackend.herokuapp.com/tasks"
@@ -30,8 +32,19 @@ function Task() {
     console.log(id);
     history.push(`/edittask/${id}`);
   };
-  const deletetask = (e) => {
-    setTasks(tasks.filter((task) => task._id !== e));
+  const deletetask = async (e) => {
+    const token = localStorage.getItem("token");
+    const decode = jwt.decode(token);
+    console.log(decode);
+    if (decode.role === "admin") {
+      setTasks(tasks.filter((task) => task._id !== e));
+      await fetch(`http://localhost:5000/task/${e}/delete?token=${token}`);
+    } else {
+      setMessage("you don't have parmission to delete task");
+    }
+  };
+  const deletemessage = () => {
+    setMessage("");
   };
 
   return (
@@ -47,6 +60,14 @@ function Task() {
           <h1 className="sm:text-3x1 md:tracking-wider rounded-sm bg-yellow-600 p-3 mb-5 font-mono mt-5">
             Tasklist
           </h1>
+          {message && (
+            <div className="py-2">
+              <span className="bg-red-500">{message}</span>
+              <button onClick={deletemessage} className="bg-red-800 ">
+                X
+              </button>
+            </div>
+          )}
           {tasks && (tasks.length > 0 || tasks == null) ? (
             tasks.map((task) => (
               <Tasklist

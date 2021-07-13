@@ -8,11 +8,13 @@ function Ragister() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassward] = useState("");
+
+  const [message, setMessage] = useState("");
   const history = useHistory();
   async function onSubmit(e) {
     e.preventDefault();
     const ragisterdetails = { username, email, password };
-    let result = await fetch(`https://ftmbackend.herokuapp.com/ragister`, {
+    let result = await fetch(`http://localhost:5000/ragister`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -20,9 +22,12 @@ function Ragister() {
       body: JSON.stringify(ragisterdetails),
     });
     let data = await result.json();
-    console.log(data);
-    localStorage.setItem("token", data);
-    history.push("/");
+    if (result.status === 200) {
+      localStorage.setItem("token", data);
+      history.push("/");
+    }
+
+    setMessage(data);
   }
   return (
     <div className="w-full h-screen flex">
@@ -33,6 +38,7 @@ function Ragister() {
       />
       <div className="bg-white flex flex-col justify-center items-center w-full md:w-6/12 shadow-lg">
         <NavbarButton />
+        {message && <span>{message}</span>}
         <div className="w-4/5 md:w-1/2">
           <input
             type="text"

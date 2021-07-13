@@ -14,10 +14,10 @@ function Family(props) {
     setmembers(data);
   }, [data]);
 
-  const addmember = (newmember) => {
-    console.log(newmember);
-    setmembers([newmember, ...members]);
-  };
+  // const addmember = (newmember) => {
+  //   console.log(newmember);
+  //   setmembers([newmember, ...members]);
+  // };
   return (
     <div>
       <Header />
@@ -25,22 +25,22 @@ function Family(props) {
       {ispending && <Loader />}
       <div className="flex flex-col md:flex-row bg-gray-100 md:min-h-screen w-full">
         <div className="md:w-1/2 bg-gray-300 flex justify-center items-centers">
-          <Createmember addmember={addmember} />
+          <Createmember />
         </div>
         <div className="flex flex-col  md:w-1/2 bg-gray-800 items-center rounded-t-xl md:rounded-t-none md:rounded-l-xl p-8 overflow-y-auto shadow-2xl">
           <h1 className="sm:text-3x1 md:tracking-wider rounded-sm bg-yellow-600 p-3 mb-5 mt-5 font-mono">
             MemberList
           </h1>
-          {members && members.length > 0 ? (
-            members.map((member) => (
-              <Memberlist member={member} key={member._id} />
-            ))
-          ) : (
-            <div className="flex justify-center items-center text-xl text -white bg-red-300">
-              <span>NO member avilable for this family</span>
-            </div>
-          )}
-          )
+          {members &&
+            (members.length > 0 ? (
+              members.map((member) => (
+                <Memberlist member={member} key={member._id} />
+              ))
+            ) : (
+              <div className="flex justify-center items-center text-xl text -white bg-red-300">
+                <span>NO member avilable for this family</span>
+              </div>
+            ))}
         </div>
       </div>
     </div>

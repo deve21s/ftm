@@ -2,15 +2,31 @@ import React, { useState } from "react";
 
 function Createmember(props) {
   const [email, setEmail] = useState();
+  const [message, setMessage] = useState();
+  const token = localStorage.getItem("token");
 
-  const createmember = (e) => {
+  const createmember = async (e) => {
     e.preventDefault();
-    fetch();
     const family = {
       email,
+      name: "deven",
     };
-    return props.addmember(family);
+    let result = await fetch(`http://localhost:5000/addmember?token=${token}`, {
+      method: "POST",
+      nocors: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(family),
+    });
+    let data = await result.json();
+    setMessage(data);
+    setEmail("");
   };
+  const deleteMessage = () => {
+    setMessage("");
+  };
+
   return (
     <>
       <form
@@ -20,6 +36,17 @@ function Createmember(props) {
         <h1 className="sm:text-3xl mt-5 sm:m-0 tracking-wider rounded-sm bg-yellow-600 p-3 mb-5 font-mono">
           Add-Member
         </h1>
+        {message && (
+          <div className="text-lg bg-red-400">
+            <span className="text-lg">{message}</span>
+            <span
+              className="bg-red-700 ml-1 px-2 cursor-pointer"
+              onClick={deleteMessage}
+            >
+              X
+            </span>
+          </div>
+        )}
         <div className="flex justify-center">
           <div className="relative flex flex-wrap items-stretch mb-3 mr-5">
             <input

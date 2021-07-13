@@ -1,14 +1,27 @@
 import React, { useState } from "react";
+import useFetch from "../useFetch";
 
 function Createtask({ addtask }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [assign, setAssign] = useState("");
-  const token = localStorage.getItem("token");
-  const mindate = Date.now();
+  let today = new Date();
+  let dd = today.getDate();
+  let mm = today.getMonth() + 1;
+  let yyyy = today.getFullYear();
+  if (dd < 10) {
+    dd = "0" + dd;
+  }
+  if (mm < 10) {
+    mm = "0" + mm;
+  }
+  let todayis = yyyy + "-" + mm + "-" + dd;
 
-  console.log(mindate);
+  const [message, setMessage] = useState("");
+  const token = localStorage.getItem("token");
+
+  const { data } = useFetch("https://ftmbackend.herokuapp.com/memberlist");
 
   const Createtask = async (e) => {
     e.preventDefault();
@@ -30,8 +43,12 @@ function Createtask({ addtask }) {
       }
     );
     let data = await result.json();
-    console.log(data);
+    setMessage("task added");
     addtask(data);
+    setTitle("");
+    setDescription("");
+    setDate("");
+    setAssign("");
   };
   return (
     <>
@@ -42,10 +59,22 @@ function Createtask({ addtask }) {
         <h1 className="sm:text-3xl md:mt-5 sm:m-0 tracking-wider rounded-b-xl bg-yellow-600 p-3 mb-8 font-mono mt-8">
           Add-Task
         </h1>
+        {message && (
+          <div className="flex mt-3">
+            <h1 className="text-lg bg-red-300">{message}</h1>
+            <span
+              className="px-2 bg-red-400 cursor-pointer"
+              onClick={() => setMessage("")}
+            >
+              X
+            </span>
+          </div>
+        )}
         <div className="m-2 w-2/3">
           <span className="font-semibold">Title</span>
           <input
             type="text"
+            value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Enter Task Title"
             className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:ring w-full pr-10"
@@ -54,6 +83,7 @@ function Createtask({ addtask }) {
         <div className="m-2 w-2/3">
           <span className="font-semibold">Description</span>
           <input
+            value={description}
             type="text"
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Enter your description"
@@ -65,7 +95,8 @@ function Createtask({ addtask }) {
           <span className="font-semibold">DueDate</span>
           <input
             type="date"
-            min={Date.now().toString()}
+            value={date}
+            min={todayis}
             onChange={(e) => setDate(e.target.value)}
             className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:ring w-full pr-10"
           />
@@ -73,13 +104,17 @@ function Createtask({ addtask }) {
         <div className="m-2 w-2/3">
           <span className="font-semibold">Assign</span>
           <select
+            value={assign}
             className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:ring w-full pr-10"
             onChange={(e) => setAssign(e.target.value)}
           >
-            <option value="mitesh">mitesh</option>
-            <option value="hitesh">hitesh</option>
-            <option value="ramesh">ramesh</option>
-            <option value="suresh">suresh</option>
+            <option value="">Assign task</option>
+            {data &&
+              data.map((member) => (
+                <option key={member._id} value={member._id}>
+                  {member.name}
+                </option>
+              ))}
           </select>
         </div>
 

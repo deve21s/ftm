@@ -7,7 +7,7 @@ function Setpassword() {
   const { token } = useParams();
   const history = useHistory();
   const submitmember = async () => {
-    let result = await fetch(`https://ftmbackend.herokuapp.com/setpassword`, {
+    let result = await fetch(`http://localhost:5000/setpassword`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
