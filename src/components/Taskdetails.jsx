@@ -88,7 +88,7 @@ function Taskdetails() {
                 className="m-2 w-28"
                 type="button"
                 value="comment"
-                disabled={!comment}
+                disabled={!text}
                 onClick={submitComment}
               />
             </form>
