@@ -7,10 +7,8 @@ function Taskdetails() {
   const { id } = useParams();
   const [text, setText] = useState("");
   const [isshow, setShow] = useState("hidden");
-
-  const [comment, setComment] = useState([]);
   const { error, ispending, data } = useFetch(
-    `http://localhost:5000/task/${id}`
+    `https://ftmbackend.herokuapp.com/task/${id}`
   );
 
   const { data: members } = useFetch(
@@ -28,7 +26,7 @@ function Taskdetails() {
   };
   const submitComment = () => {
     //submit comment
-    fetch(`http://localhost:5000/comment/${id}?token=${token}`, {
+    fetch(`https://ftmbackend.herokuapp.com/comment/${id}?token=${token}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

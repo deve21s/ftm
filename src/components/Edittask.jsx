@@ -34,7 +34,7 @@ function Edittask(props) {
       assign,
     };
     const result = fetch(
-      `http://localhost:5000/edittask/${taskid}?token=${token}`,
+      `https://ftmbackend.herokuapp.com/edittask/${taskid}?token=${token}`,
       {
         method: "post",
         headers: {

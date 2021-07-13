@@ -38,7 +38,9 @@ function Task() {
     console.log(decode);
     if (decode.role === "admin") {
       setTasks(tasks.filter((task) => task._id !== e));
-      await fetch(`http://localhost:5000/task/${e}/delete?token=${token}`);
+      await fetch(
+        `https://ftmbackend.herokuapp.com/task/${e}/delete?token=${token}`
+      );
     } else {
       setMessage("you don't have parmission to delete task");
     }

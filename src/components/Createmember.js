@@ -11,14 +11,17 @@ function Createmember(props) {
       email,
       name: "deven",
     };
-    let result = await fetch(`http://localhost:5000/addmember?token=${token}`, {
-      method: "POST",
-      nocors: true,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(family),
-    });
+    let result = await fetch(
+      `https://ftmbackend.herokuapp.com/addmember?token=${token}`,
+      {
+        method: "POST",
+        nocors: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(family),
+      }
+    );
     let data = await result.json();
     setMessage(data);
     setEmail("");
