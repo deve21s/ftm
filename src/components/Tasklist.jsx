@@ -39,6 +39,7 @@ function Tasklist({ task, taskdetail, deletetask, edittask, Completetask }) {
           editTask
         </button>
         <button
+          disabled={task.isCompleted}
           className="bg-gray-700 text-white p-2 hover:bg-gray-700"
           onClick={() => Completetask(task)}
         >
