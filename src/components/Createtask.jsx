@@ -119,6 +119,12 @@ function Createtask({ addtask }) {
         </div>
 
         <input
+          disabled={
+            title.length === 0 ||
+            description.length === 0 ||
+            date.length === 0 ||
+            assign.length === 0
+          }
           className="text-sm font-mono font-light p-2 m-1 rounded-lg hover:shadow-2xl transform transition cursor-pointer hover:ease-in-out bg-gradient-to-br border-green-700 hover:scale-105 border-solid space-x-1 border-2 tracking-widest"
           type="submit"
           value="Save"
