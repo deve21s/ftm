@@ -1,7 +1,7 @@
 import React from "react";
 import useFetch from "../useFetch";
 
-function Tasklist({ task, taskdetail, deletetask, edittask }) {
+function Tasklist({ task, taskdetail, deletetask, edittask, Completetask }) {
   const { data: members } = useFetch(
     "https://ftmbackend.herokuapp.com/memberlist"
   );
@@ -27,10 +27,16 @@ function Tasklist({ task, taskdetail, deletetask, edittask }) {
           deleteTask
         </button>
         <button
-          className="bg-gray-500 text-white p-2 hover:bg-gray-700"
+          className="bg-gray-500 text-white p-2 mb-1 hover:bg-gray-700"
           onClick={() => edittask(task._id)}
         >
           editTask
+        </button>
+        <button
+          className="bg-gray-700 text-white p-2 hover:bg-gray-700"
+          onClick={() => Completetask(task)}
+        >
+          Complete
         </button>
       </div>
     </div>

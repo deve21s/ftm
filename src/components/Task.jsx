@@ -45,6 +45,26 @@ function Task() {
       setMessage("you don't have parmission to delete task");
     }
   };
+  const Completetask = async (e) => {
+    const token = localStorage.getItem("token");
+    const decode = jwt.decode(token);
+    console.log(decode);
+    if (decode.id === e.assign) {
+      await fetch(
+        `https://ftmbackend.herokuapp.com/task/${e._id}?token=${token}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      setMessage("Task is completed");
+    } else {
+      setMessage("you don't have parmission to complete task");
+    }
+  };
+
   const deletemessage = () => {
     setMessage("");
   };
@@ -78,6 +98,7 @@ function Task() {
                 taskdetail={taskdetail}
                 edittask={edittask}
                 deletetask={deletetask}
+                Completetask={Completetask}
               />
             ))
           ) : (
