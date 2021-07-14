@@ -6,7 +6,13 @@ function Tasklist({ task, taskdetail, deletetask, edittask, Completetask }) {
     "https://ftmbackend.herokuapp.com/memberlist"
   );
   return (
-    <div className="bg-gray-400 rounded-md flex flex-nowrap flex-row mb-2 w-full p-2 justify-between">
+    <div
+      className={
+        task.isCompleted
+          ? "bg-green-400 rounded-md flex flex-nowrap flex-row mb-2 w-full p-2 justify-between"
+          : "bg-gray-400 rounded-md flex flex-nowrap flex-row mb-2 w-full p-2 justify-between"
+      }
+    >
       <div className="flex flex-col w-full" onClick={() => taskdetail(task)}>
         <span className="sm:text-lg font-sarif font-semibold md:tracking-wider">
           {task.title}
