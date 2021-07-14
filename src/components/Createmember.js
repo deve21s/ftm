@@ -54,6 +54,7 @@ function Createmember(props) {
           <div className="relative flex flex-wrap items-stretch mb-3 mr-5">
             <input
               type="email"
+              value={email}
               placeholder="Enter Email"
               onChange={(e) => setEmail(e.target.value)}
               className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:ring w-full pr-10"

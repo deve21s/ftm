@@ -43,11 +43,11 @@ function Taskdetails() {
       });
   };
   return (
-    <div className="flex justify-center h-screen bg-gray-400">
+    <div className="flex justify-center h-auto bg-gray-400">
       {error && <div>{error}</div>}
       {ispending && <Loader />}
       {data && (
-        <div className="w-2/3 rounded-xl bg-gray-700 text-xl p-2 shadow-xl h-screen">
+        <div className="w-full md:w-4/5 rounded-xl bg-gray-700 text-xl p-2 shadow-xl h-auto">
           <div>
             <h1 className="flex justify-center bg-yellow-600 font-mono font-bold rounded-lg mb-2">
               {data.title}
@@ -94,12 +94,14 @@ function Taskdetails() {
             </form>
           </div>
           <h1 className="text-center font-semibold text-4xl">Comments</h1>
-          <div className="flex flex-col items-center overflow-hidden h-2/3 overflow-y-auto">
+          <div className="flex flex-col items-center overflow-auto">
             {data.comments.length > 0 ? (
               data.comments.map((a) => (
-                <div className="w-2/3 m-2 bg-white flex flex-col items-start rounded-lg">
-                  <p className="m-2 bg-yellow-200 w-auto">{a.name}</p>
-                  <p className="m-2">{a.text}</p>
+                <div className="w-full m-1 md:w-2/3 md:m-2 bg-white flex flex-col items-start rounded-lg">
+                  <p className="m-1 p-0.5 rounded-md bg-yellow-200 w-auto">
+                    {a.name}
+                  </p>
+                  <p className="m-1 text-lg font-thin">{a.text}</p>
                 </div>
               ))
             ) : (
