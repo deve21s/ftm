@@ -1,22 +1,27 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { cn } from "../lib/utils";
+
 function NavbarButton() {
+  const baseClasses =
+    "rounded-md px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300";
+
   return (
-    <div className="m-2 flex flex-row  p-2 mb-5 space-x-5">
+    <div className="mb-6 grid w-full grid-cols-2 gap-2 rounded-lg bg-slate-100 p-1">
       <NavLink
         exact
         to="/"
-        activeClassName="bg-blue-200"
-        className=" hover:bg-blue-700 active:bg-pink-600 text-black px-3 py-1 rounded text-lg focus:outline-none "
+        className={baseClasses}
+        activeClassName={cn(baseClasses, "bg-white text-slate-900 shadow")}
       >
-        Sign-In
+        Sign In
       </NavLink>
       <NavLink
         to="/ragister"
-        activeClassName="bg-blue-200"
-        className=" hover:bg-blue-700 active:bg-pink-600 text-black  px-3 py-1 rounded text-lg focus:outline-none "
+        className={baseClasses}
+        activeClassName={cn(baseClasses, "bg-white text-slate-900 shadow")}
       >
-        Sign-up
+        Sign Up
       </NavLink>
     </div>
   );
